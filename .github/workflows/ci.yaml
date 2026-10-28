@@ -8,13 +8,13 @@ on:
       - main 
 jobs:
   build_and_push:
-    run-on: ubuntu_latest 
+    runs-on: ubuntu_latest 
     steps:
     - name: checkout Code 
       uses: actions/checkout@v2
     - name: Set Short SHA 
       run: |
-       echo "SHORT_SHA=$(echo ${GIHUB_SHA})| cut -c1-7)" >> $GITHUB_ENV
+       echo "SHORT_SHA=$(echo ${GITHUB_SHA})| cut -c1-7)" >> $GITHUB_ENV
     - name: built Docker Image 
       run: |
         docker built -t alcanegaitan/complete-devops-projets:${{en.SHORT_SHA }} .
