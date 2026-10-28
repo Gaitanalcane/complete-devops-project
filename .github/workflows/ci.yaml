@@ -8,19 +8,19 @@ on:
       - main 
 jobs:
   build_and_push:
-    runs-on: ubuntu_latest 
+    runs-on: ubuntu-latest 
     steps:
     - name: checkout Code 
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
     - name: Set Short SHA 
       run: |
        echo "SHORT_SHA=$(echo ${GITHUB_SHA})| cut -c1-7)" >> $GITHUB_ENV
-    - name: built Docker Image 
+    - name: build Docker Image 
       run: |
-        docker built -t alcanegaitan/complete-devops-projets:${{env.SHORT_SHA }} .
+        docker build -t alcanegaitan/complete-devops-projets:${{env.SHORT_SHA }} .
     - name: login to Dockerhub
       run: |
-        echo "${{ secrets.DOCKERHUB_TOKEN}}" docker login -u "${{ secrets.DOCKERHUB_USENAME }}" --password-stdin
+        echo "${{ secrets.DOCKERHUB_TOKEN}}" | docker login -u "${{ secrets.DOCKERHUB_USENAME }}" --password-stdin
     - name: push to Dockerhub
       run: |
         docker push alcanegaitan/complete-devops-projets:${{env.SHORT_SHA }} 
