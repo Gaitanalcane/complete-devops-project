@@ -23,5 +23,5 @@ jobs:
         echo "${{ secrets.DOCKERHUB_TOKEN}}" docker login -u "${{ secrets.DOCKERHUB_USENAME }}" --password-stdin
     - name: push to Dockerhub
       run: |
-        docker push alcanegaitan/complete-devops-projets:${{en.SHORT_SHA }} 
+        docker push alcanegaitan/complete-devops-projets:${{env.SHORT_SHA }} 
         
