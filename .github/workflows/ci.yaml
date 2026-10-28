@@ -20,7 +20,7 @@ jobs:
         docker built -t alcanegaitan/complete-devops-projets:${{env.SHORT_SHA }} .
     - name: login to Dockerhub
       run: |
-        echo "${{ secrets.DOCKERHUB_TOKEN}}" docker login -u "${{ secret.DOCKERHUB_USENAME }}" --password-stdin
+        echo "${{ secrets.DOCKERHUB_TOKEN}}" docker login -u "${{ secrets.DOCKERHUB_USENAME }}" --password-stdin
     - name: push to Dockerhub
       run: |
         docker push alcanegaitan/complete-devops-projets:${{en.SHORT_SHA }} 
